@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+message JoinChat{
+  string user = 1;
+}
+message SendMessage{
+  string message = 1;
+  string user = 2;
+}
+message MessageResponse{
+  string message = 1;
+  string user = 2;
+  int32 timestamp = 3;
+}
+message EmptyResponse{
+}
+
+service ChatService{
+  rpc joinChat(JoinChat) returns (stream MessageResponse){}
+  rpc sendMessage(SendMessage) returns (EmptyResponse){}
+}
